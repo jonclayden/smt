@@ -1,0 +1,34 @@
+name: CI
+
+on: [ push, pull_request ]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # This workflow contains a single job called "check"
+  check:
+    # Build and check on Linux and macOS
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
+    
+    # The type of runner that this job runs on
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+      with:
+        submodules: true
+    
+    - name: Install cmake
+      uses: lukka/get-cmake@latest
+    
+    - name: Build project
+      run: |
+        mkdir build && cd build
+        cmake ..
+        make
