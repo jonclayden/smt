@@ -634,19 +634,19 @@ public:
 	}
 
 	T operator[](const std::size_t& ii) const {
-		smt::assert(0 <= ii && ii < size());
+		smt::smt_assert(0 <= ii && ii < size());
 		return _readfun(ii, _data, _header.scl_slope, _header.scl_inter);
 	}
 
 	T operator()(const std::size_t& i0, const std::size_t& i1, const std::size_t& i2) const {
 		static_assert(D == 3, "D == 3");
-		smt::assert(0 <= i0 && i0 < size(0) && 0 <= i1 && i1 < size(1) && 0 <= i2 && i2 < size(2));
+		smt::smt_assert(0 <= i0 && i0 < size(0) && 0 <= i1 && i1 < size(1) && 0 <= i2 && i2 < size(2));
 		return operator[](i0+size(0)*(i1+size(1)*i2));
 	}
 
 	T operator()(const std::size_t& i0, const std::size_t& i1, const std::size_t& i2, const std::size_t& i3) const {
 		static_assert(D == 4, "D == 4");
-		smt::assert(0 <= i0 && i0 < size(0) && 0 <= i1 && i1 < size(1) && 0 <= i2 && i2 < size(2) && 0 <= i3 && i3 < size(3));
+		smt::smt_assert(0 <= i0 && i0 < size(0) && 0 <= i1 && i1 < size(1) && 0 <= i2 && i2 < size(2) && 0 <= i3 && i3 < size(3));
 		return operator[](i0+size(0)*(i1+size(1)*(i2+size(2)*i3)));
 	}
 
@@ -670,12 +670,12 @@ public:
 	}
 
 	std::size_t size(const std::size_t& ii) const {
-		smt::assert(0 <= ii && ii < D);
+		smt::smt_assert(0 <= ii && ii < D);
 		return _header.dim[ii+1];
 	}
 
 	float pixsize(const std::size_t& ii) const {
-		smt::assert(0 <= ii && ii < D);
+		smt::smt_assert(0 <= ii && ii < D);
 		return _header.pixdim[ii+1];
 	}
 
@@ -1093,19 +1093,19 @@ public:
 	}
 
 	T& operator[](const std::size_t& ii) {
-		smt::assert(0 <= ii && ii < size());
+		smt::smt_assert(0 <= ii && ii < size());
 		return _data[ii];
 	}
 
 	T& operator()(const std::size_t& i0, const std::size_t& i1, const std::size_t& i2) {
 		static_assert(D == 3, "D == 3");
-		smt::assert(0 <= i0 && i0 < size(0) && 0 <= i1 && i1 < size(1) && 0 <= i2 && i2 < size(2));
+		smt::smt_assert(0 <= i0 && i0 < size(0) && 0 <= i1 && i1 < size(1) && 0 <= i2 && i2 < size(2));
 		return _data[i0+size(0)*(i1+size(1)*i2)];
 	}
 
 	T& operator()(const std::size_t& i0, const std::size_t& i1, const std::size_t& i2, const std::size_t& i3) {
 		static_assert(D == 4, "D == 4");
-		smt::assert(0 <= i0 && i0 < size(0) && 0 <= i1 && i1 < size(1) && 0 <= i2 && i2 < size(2) && 0 <= i3 && i3 < size(3));
+		smt::smt_assert(0 <= i0 && i0 < size(0) && 0 <= i1 && i1 < size(1) && 0 <= i2 && i2 < size(2) && 0 <= i3 && i3 < size(3));
 		return _data[i0+size(0)*(i1+size(1)*(i2+size(2)*i3))];
 	}
 
@@ -1118,7 +1118,7 @@ public:
 	}
 
 	std::size_t size(const std::size_t& ii) const {
-		smt::assert(0 <= ii && ii < D);
+		smt::smt_assert(0 <= ii && ii < D);
 		return _header.dim[ii+1];
 	}
 

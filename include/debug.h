@@ -62,7 +62,7 @@ void error_impl(const std::string& s, const std::string& file, const long int& l
 #ifdef NDEBUG
 void assert_noimpl() {}
 
-#define assert(test) assert_noimpl()
+#define smt_assert(test) assert_noimpl()
 #else
 void assert_impl(const bool& test, const std::string& s, const std::string& file, const long int& line, const std::string& function) {
 	if(! test) {
@@ -75,7 +75,7 @@ void assert_impl(const bool& test, const std::string& s, const std::string& file
 	}
 }
 
-#define assert(test) assert_impl((test), #test, __FILE__, __LINE__, __PRETTY_FUNCTION__)
+#define smt_assert(test) assert_impl((test), #test, __FILE__, __LINE__, __PRETTY_FUNCTION__)
 #endif // NDEBUG
 
 } // smt

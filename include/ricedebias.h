@@ -107,7 +107,7 @@ float ricedebias(float x, float sigma) {
 			-0.0277546919204136305245f,
 			0.101693239387338638145f};
 
-	smt::assert(sigma > 0.0f);
+	smt::smt_assert(sigma > 0.0f);
 	x /= sigma;
 
 	if(x <= sqrt_m_pi_2) {
@@ -188,7 +188,7 @@ double ricedebias(double x, double sigma) {
 			-0.0277546919204136305245,
 			0.101693239387338638145};
 
-	smt::assert(sigma > 0.0);
+	smt::smt_assert(sigma > 0.0);
 	x /= sigma;
 
 	if(x <= sqrt_m_pi_2) {

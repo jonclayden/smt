@@ -91,7 +91,7 @@ private:
 	}
 
 	float_t meansignal() const {
-		smt::assert(_y.size() > 0);
+		smt::smt_assert(_y.size() > 0);
 
 		float_t y_mean = 0;
 		for(std::size_t ii = 0; ii < _y.size(); ++ii) {
@@ -102,7 +102,7 @@ private:
 	}
 
 	float_t stdsignal(const float_t& mean) const {
-		smt::assert(_y.size() > 0);
+		smt::smt_assert(_y.size() > 0);
 
 		float_t y_std = 0;
 		for(std::size_t ii = 0; ii < _y.size(); ++ii) {

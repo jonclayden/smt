@@ -36,7 +36,7 @@ namespace smt {
 template <typename T>
 T project(const T& x, const T& min, const T& max) {
 	
-	smt::assert(min < max);
+	smt::smt_assert(min < max);
 	
 	return (x < min)? min : ((max < x)? max : x);
 }

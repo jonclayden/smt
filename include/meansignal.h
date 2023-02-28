@@ -54,7 +54,7 @@ float_t meansignal(const float_t bvalue, const float_t lambda1, const float_t la
 	} else if(lambda1 < lambda2) {
 		return meansignal(bvalue, lambda2, lambda1);
 	} else {
-		smt::assert(false);
+		smt::smt_assert(false);
 	}
 
 	return std::numeric_limits<float_t>::quiet_NaN(); // unreachable

@@ -132,7 +132,7 @@ private:
 				++n;
 			}
 		}
-		smt::assert(n > 0);
+		smt::smt_assert(n > 0);
 		y0 /= n;
 
 		return y0;
