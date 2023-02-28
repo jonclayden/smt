@@ -121,7 +121,7 @@ install(TARGETS gaussianfit ricianfit fitmicrodt fitmcmicro DESTINATION bin)
 install(FILES README.md LICENSE.md THIRDPARTY.md DESTINATION .)
 
 if(GIT_FOUND)
-	string(REGEX REPLACE "^v" "" SMT_PACKAGE_VERSION ${SMT_VERSION_STRING})
+	string(REGEX REPLACE "^v" "" SMT_PACKAGE_VERSION "${SMT_VERSION_STRING}")
 else()
 	set(SMT_PACKAGE_VERSION "unknown")
 endif()
