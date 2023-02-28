@@ -66,10 +66,8 @@ static_assert(sizeof(signed long int) == 8, "sizeof(signed long int) == 8");
 static_assert(sizeof(unsigned long int) == 8, "sizeof(unsigned long int) == 8");
 static_assert(sizeof(float) == 4, "sizeof(float) == 4");
 static_assert(sizeof(double) == 8, "sizeof(double) == 8");
-static_assert(sizeof(long double) == 16, "sizeof(float) == 16");
 static_assert(sizeof(std::complex<float>) == 8, "sizeof(std::complex<float>) == 8");
 static_assert(sizeof(std::complex<double>) == 16, "sizeof(std::complex<double>) == 16");
-static_assert(sizeof(std::complex<long double>) == 32, "sizeof(std::complex<float>) == 32");
 
 std::size_t nifti_bytesize(const short& datatype) {
 	switch(datatype) {
@@ -93,14 +91,18 @@ std::size_t nifti_bytesize(const short& datatype) {
 		return sizeof(float);
 	case NIFTI_TYPE_FLOAT64:
 		return sizeof(double);
+#if SIZEOF_LONG_DOUBLE == 16
 	case NIFTI_TYPE_FLOAT128:
 		return sizeof(long double);
+#endif
 	case NIFTI_TYPE_COMPLEX64:
 		return sizeof(std::complex<float>);
 	case NIFTI_TYPE_COMPLEX128:
 		return sizeof(std::complex<double>);
+#if SIZEOF_LONG_DOUBLE == 16
 	case NIFTI_TYPE_COMPLEX256:
 		return sizeof(std::complex<long double>);
+#endif
 	default:
 		smt::error("Unable to read/write NIfTI-1 data type.");
 		std::exit(EXIT_FAILURE);
@@ -131,10 +133,14 @@ DEFINE_NIFTI_DATATYPE(signed long int, NIFTI_TYPE_INT64)
 DEFINE_NIFTI_DATATYPE(unsigned long int, NIFTI_TYPE_UINT64)
 DEFINE_NIFTI_DATATYPE(float, NIFTI_TYPE_FLOAT32)
 DEFINE_NIFTI_DATATYPE(double, NIFTI_TYPE_FLOAT64)
+#if SIZEOF_LONG_DOUBLE == 16
 DEFINE_NIFTI_DATATYPE(long double, NIFTI_TYPE_FLOAT128)
+#endif
 DEFINE_NIFTI_DATATYPE(std::complex<float>, NIFTI_TYPE_COMPLEX64)
 DEFINE_NIFTI_DATATYPE(std::complex<double>, NIFTI_TYPE_COMPLEX128)
+#if SIZEOF_LONG_DOUBLE == 16
 DEFINE_NIFTI_DATATYPE(std::complex<long double>, NIFTI_TYPE_COMPLEX256)
+#endif
 
 #undef DEFINE_NIFTI_DATATYPE
 #endif // DEFINE_NIFTI_DATATYPE
@@ -1000,18 +1006,22 @@ private:
 		case NIFTI_TYPE_FLOAT64:
 			DEFINE_NIFTI_READFUN(double)
 			break;
+#if SIZEOF_LONG_DOUBLE == 16
 		case NIFTI_TYPE_FLOAT128:
 			DEFINE_NIFTI_READFUN(long double)
 			break;
+#endif
 		case NIFTI_TYPE_COMPLEX64:
 			DEFINE_NIFTI_READFUN(std::complex<float>)
 			break;
 		case NIFTI_TYPE_COMPLEX128:
 			DEFINE_NIFTI_READFUN(std::complex<double>)
 			break;
+#if SIZEOF_LONG_DOUBLE == 16
 		case NIFTI_TYPE_COMPLEX256:
 			DEFINE_NIFTI_READFUN(std::complex<long double>)
 			break;
+#endif
 		default:
 			smt::error("Unable to read NIfTI-1 data type.");
 			std::exit(EXIT_FAILURE);

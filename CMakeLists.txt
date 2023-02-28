@@ -74,6 +74,9 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
 	endif()
 endif()
 
+include(CheckTypeSize)
+check_type_size("long double" SIZEOF_LONG_DOUBLE)
+
 find_package(Git)
 if(GIT_FOUND)
 	execute_process(
