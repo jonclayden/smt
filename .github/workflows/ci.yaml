@@ -32,3 +32,11 @@ jobs:
         mkdir build && cd build
         cmake ..
         make
+    
+    # Upload the build directory as an artefact on failure
+    - name: Upload build results
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ matrix.os }}-build
+        path: build
