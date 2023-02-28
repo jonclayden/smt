@@ -1,6 +1,8 @@
+[![CI](https://github.com/jonclayden/smt/actions/workflows/ci.yaml/badge.svg)](https://github.com/jonclayden/smt/actions/workflows/ci.yaml)
+
 # SMT
 
-The [Spherical Mean Technique (SMT)](http://dx.doi.org/10.1002/mrm.25734) is a clinically feasible method for microscopic diffusion anisotropy imaging. The purpose is to map microscopic features unconfounded by the effects of fibre crossings and orientation dispersion, which are ubiquitous in the brain. This technique requires only an off-the-shelf diffusion sequence with two (or more) b-shells achievable on any standard MRI scanner, thus facilitating its widespread use in neuroscience research and clinical neurology. So far, SMT comes in two flavours, a microscopic tensor model and a simple multi-compartment model. This software was developed and is maintained by [Enrico Kaden](https://ekaden.github.io) from University College London.
+The [Spherical Mean Technique (SMT)](http://dx.doi.org/10.1002/mrm.25734) is a clinically feasible method for microscopic diffusion anisotropy imaging. The purpose is to map microscopic features unconfounded by the effects of fibre crossings and orientation dispersion, which are ubiquitous in the brain. This technique requires only an off-the-shelf diffusion sequence with two (or more) b-shells achievable on any standard MRI scanner, thus facilitating its widespread use in neuroscience research and clinical neurology. So far, SMT comes in two flavours, a microscopic tensor model and a simple multi-compartment model. This software was developed and is maintained by [Enrico Kaden](https://ekaden.github.io) from University College London. This fork has some patches by Jon Clayden.
 
 ## Installing
 
@@ -16,13 +18,9 @@ SMT requires the following software (tested under [Red Hat Enterprise Linux 6](h
 * [cmake](https://cmake.org/) (version 2.8 or later)
 * [GNU C/C++ compiler](https://gcc.gnu.org/) (version 4.9 or later), [Clang C/C++ compiler](http://clang.llvm.org/) (version 3.5 or later) or [Intel C/C++ compiler](https://software.intel.com/en-us/c-compilers/) (version 16.0 or later)
 
-Clone the SMT repository and checkout the latest release:
+Clone the forked SMT repository:
 ```bash
-git clone https://github.com/ekaden/smt.git
-cd smt
-git fetch -p
-git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-cd ..
+git clone https://github.com/jonclayden/smt.git
 ```
 
 Build the software:
